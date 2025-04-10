@@ -5,30 +5,7 @@
     <div>
       <h1>Timeline</h1>
     </div>
-    <form action="/logout" method="GET">
-      <button>Log Out</button>
-    </form>
-    <h2>Sign Up</h2>
-    <form class="form" method="post" action="/user/signup-login">
-      <label for="email">E-mail</label>
-      <input
-        class="email"
-        type="email"
-        name="email"
-        placeholder=" Your email here..."
-      />
-      <label for="password">Password</label>
-      <input
-        class="password"
-        type="password"
-        name="password"
-        placeholder=" Your password here..."
-      />
-      <button class="btn">Sign Up</button>
-    </form>
-    <% if (signUpMessage) { %>
-    <h5><%= signUpMessage %></h5>
-    <% } %>
+
     <h2>Log In</h2>
     <form class="form" method="post" action="/user/login">
       <label for="email">E-mail</label>
@@ -45,10 +22,43 @@
         name="password"
         placeholder=" Your password here..."
       />
-      <button class="btn">Log In</button>
+      <button class="btn form-btn">Login</button>
     </form>
     <% if (loginMessage) { %>
     <h5><%= loginMessage %></h5>
+    <% } %>
+    <h2>Register</h2>
+    <form class="form" method="post" action="/user/signup-login">
+      <label for="firstName">First name:</label>
+      <input
+        type="text"
+        name="firstName"
+        placeholder=" Your first name here..."
+      />
+      <label for="lastName">Last name:</label>
+      <input
+        type="text"
+        name="lastName"
+        placeholder=" Your last name here..."
+      />
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" placeholder=" Your email here..." />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        name="password"
+        placeholder=" Your password here..."
+      />
+      <label for="confirmPassword">Confirm Password:</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder=" Your confirm password here..."
+      />
+      <button class="btn form-btn">Register</button>
+    </form>
+    <% if (signUpMessage) { %>
+    <h5><%= signUpMessage %></h5>
     <% } %>
   </body>
 </html>

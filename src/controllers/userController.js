@@ -9,26 +9,40 @@ const signUpPage = (req, res) => {
 };
 
 const signup = (req, res) => {
-  //bcrypt/hash the password
-  if (req.body.password !== '') {
-    //hash password
-    let hashedPass = bcrypt.hashSync(req.body.password, 10);
+  const { firstName, lastName, email, password, confirmPassword } = req.body;
 
-    let userData = { ...req.body, password: hashedPass };
-
-    const addNewUser = new User(userData);
-    addNewUser
-      .save()
-      .then((data) => {
-        res.render('signupLogin', {
-          signUpMessage: 'User signed up... you can log in now...',
-          loginMessage: '',
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  if (password !== confirmPassword) {
+    return res.render('signupLogin', {
+      signUpMessage: "Passwords don't match",
+      loginMessage: '',
+    });
   }
+
+  //bcrypt/hash the password
+  const hashedPass = bcrypt.hashSync(password, 10);
+
+  const newUser = new User({
+    firstName,
+    lastName,
+    email,
+    password: hashedPass,
+  });
+
+  newUser
+    .save()
+    .then(() =>
+      res.render('signupLogin', {
+        signUpMessage: 'User registered successfully!',
+        loginMessage: '',
+      }),
+    )
+    .catch((err) => {
+      console.log(err);
+      res.render('signupLogin', {
+        signUpMessage: 'Something went wrong. Try again.',
+        loginMessage: '',
+      });
+    });
 };
 
 //lodin....Auth.....Jwt

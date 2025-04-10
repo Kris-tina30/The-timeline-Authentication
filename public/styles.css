@@ -130,3 +130,6 @@ input {
   background-color: rgb(237, 49, 49);
   color: rgb(255, 255, 255);
 }
+.form-btn {
+  width: 10%;
+}
